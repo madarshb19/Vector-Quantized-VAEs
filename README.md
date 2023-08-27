@@ -22,8 +22,7 @@ The terms in the loss function are way different from what appears in the origin
 
 All the 3 terms in the loss function have a different role to play. The 2nd term optimizes the embedding vectors. The first reconstruction loss term is optimized for the decoder and both 1st and 3rd term are optimized by the encoder.
 
-# Confusion surrounding prior and where does autoregressive modelling come into picture? (still dont quite understand it,ngl)
-
+# Confusion surrounding prior and where does autoregressive modelling come into picture?
 Why the KL divergence reconstruction loss was no taking into account was explained in the code part. After backprop is done, the output is again fed into the input. This is similar to the token prediction problem in language modelling where given all the previous tokens,we predict the next token.How?
 
 We first train this model end-to-end,i.e, given 32x32x3 image,feed it thru encoder->quantizer->decoder. Do this for all images such that the quantizer learns the codebook and the different embedding representations.Now to generate new images,what we do is freeze all weights. Start with a special token and let the model prompt a value. This value is fed back into the input and the process is repeated until the 32x32 image is created and in this sense, it is considered an autoregressive model.
