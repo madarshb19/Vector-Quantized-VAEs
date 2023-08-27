@@ -10,6 +10,8 @@ Very similar to the typical VAEs with encoders and decoders but we have discrete
 
 This discretization is done by storing a codebook as the embedding space and every vector is then approximated to one of the vectors in the codebook. You could see one of the loss terms being the L2 norm between ze(x) which is the encoded vector and ej which is the embedding vector in the codebook.
 
+!(image link)
+
 # Problem with backprop
 
 If we snap these encoded vectors to the nearest embedding in the codebook, chances are that the decoder function would become non-differentiable making it impossible to backprop gradients. Fortunately, there is a solution. The length of the encoder and decoder vectors (D) are the same. So, what we do is copypaste these gradients into the encoder vectors itself and backprop from there. (they call it the straight-through estimator)
